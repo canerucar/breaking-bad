@@ -10,6 +10,8 @@ function Home() {
   const characters = useSelector((state) => state.characters.items);
   const charPending = useSelector((state) => state.characters.charPending);
   const charReject = useSelector((state) => state.characters.charReject);
+  const nextPage = useSelector((state) => state.characters.page);
+  const hasNextPage = useSelector((state) => state.characters.hasNextPage);
   const dispatch = useDispatch();
 
   console.log(charPending);
@@ -17,12 +19,6 @@ function Home() {
   useEffect(() => {
     dispatch(fetchCharacters());
   }, [dispatch]);
-  
-  if (charPending) {
-    return <div>
-      <Loading />
-    </div>
-  }
 
   if (charReject) {
     return <div>
@@ -40,11 +36,17 @@ function Home() {
       >
         {characters.map((item) => (
           <div key={item.char_id}>
-            <img src={item.img} alt="Breaking Bad Characters" className="character" />
+            <img src={item?.img} alt="Breaking Bad Characters" className="character" />
             <h4>{ item.name }</h4>
           </div>
         ))}
       </Masonry>
+
+      {charPending && <Loading />}
+
+      {hasNextPage && !charPending && <button onClick={()=> dispatch(fetchCharacters(nextPage))}>Load More ({nextPage}) </button>}
+
+      {!hasNextPage && <div>No more :( </div>}
     </div>
   );
 }
