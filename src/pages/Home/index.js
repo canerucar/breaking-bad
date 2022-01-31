@@ -4,23 +4,23 @@ import { fetchCharacters } from "../../redux/charactersSlice";
 import Loading from "../../components/Loading";
 import Error from "../../components/Error";
 import Masonry from "react-masonry-css";
+import { Link } from "react-router-dom";
 import './styles.css';
 
 function Home() {
   const characters = useSelector((state) => state.characters.items);
-  const charPending = useSelector((state) => state.characters.charPending);
+  const status = useSelector((state) => state.characters.status );
   const charReject = useSelector((state) => state.characters.charReject);
   const nextPage = useSelector((state) => state.characters.page);
   const hasNextPage = useSelector((state) => state.characters.hasNextPage);
   const dispatch = useDispatch();
 
-  console.log(charPending);
-
   useEffect(() => {
+    if(status === 'idle')
     dispatch(fetchCharacters());
-  }, [dispatch]);
+  }, [dispatch, status]);
 
-  if (charReject) {
+  if (status === 'failed') {
     return <div>
       <Error message={charReject} />
     </div>
@@ -36,15 +36,17 @@ function Home() {
       >
         {characters.map((item) => (
           <div key={item.char_id}>
-            <img src={item?.img} alt="Breaking Bad Characters" className="character" />
-            <h4>{ item.name }</h4>
+            <Link to={`/detail/${item.char_id}`}>
+              <img src={item?.img} alt="Breaking Bad Characters" className="character" />
+              <h4>{ item.name }</h4>
+            </Link>
           </div>
         ))}
       </Masonry>
 
-      {charPending && <Loading />}
+      {status === 'loading' && <Loading />}
 
-      {hasNextPage && !charPending && <button onClick={()=> dispatch(fetchCharacters(nextPage))}>Load More ({nextPage}) </button>}
+      {hasNextPage && status !== 'loading' && <button onClick={()=> dispatch(fetchCharacters(nextPage))}>Load More ({nextPage}) </button>}
 
       {!hasNextPage && <div>No more :( </div>}
     </div>
