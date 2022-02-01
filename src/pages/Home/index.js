@@ -28,7 +28,6 @@ function Home() {
   
   return (
     <div>
-      <h1>Characters</h1>
       <Masonry
         breakpointCols={4}
         className="my-masonry-grid"
