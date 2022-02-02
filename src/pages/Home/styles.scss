@@ -1,0 +1,72 @@
+.my-masonry-grid {
+  display: flex;
+  margin-left: -20px;
+
+  &_column {
+    border-left: 20px solid transparent;
+    background-clip: padding-box;
+
+    /* Style your items */
+    div {
+      background-image: linear-gradient(#5e5b52b3, #38383af3);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+  }
+}
+
+.character {
+  width: 100%;
+
+  &-name {
+    color: white;
+  }
+}
+
+ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  height: 90px;
+  align-items: center;
+  background-image: url("../../assets/bg-wallpaper.svg");
+  background-repeat: round;
+
+  li {
+    border: 1px solid white;
+    padding: 5px 25px;
+
+    &:hover {
+      transform: scale(1.1);
+      transition: 300ms all;
+    }
+
+    a {
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      font-size: 16px;
+    }
+  }
+}
+
+.load-more {
+  height: 50px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  color: white;
+  background-color: #38383af3;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.home-wrapper {
+  display: flex;
+  flex-direction: column;
+
+  a {
+    text-decoration: none;
+  }
+}

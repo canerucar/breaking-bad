@@ -5,7 +5,7 @@ import Loading from "../../components/Loading";
 import Error from "../../components/Error";
 import Masonry from "react-masonry-css";
 import { Link } from "react-router-dom";
-import './styles.css';
+import './styles.scss';
 
 function Home() {
   const characters = useSelector((state) => state.characters.items);
@@ -27,7 +27,7 @@ function Home() {
   }
   
   return (
-    <div>
+    <div className="home-wrapper">
       <Masonry
         breakpointCols={4}
         className="my-masonry-grid"
@@ -37,7 +37,7 @@ function Home() {
           <div key={item.char_id}>
             <Link to={`/detail/${item.char_id}`}>
               <img src={item?.img} alt="Breaking Bad Characters" className="character" />
-              <h4>{ item.name }</h4>
+              <h4 className="character-name">{item.name} <span>({item.nickname})</span></h4>
             </Link>
           </div>
         ))}
@@ -45,7 +45,7 @@ function Home() {
 
       {status === 'loading' && <Loading />}
 
-      {hasNextPage && status !== 'loading' && <button onClick={()=> dispatch(fetchCharacters(nextPage))}>Load More ({nextPage}) </button>}
+      {hasNextPage && status !== 'loading' && <button onClick={()=> dispatch(fetchCharacters(nextPage))} className="load-more">Load More ({nextPage}) </button>}
 
       {!hasNextPage && <div>No more :( </div>}
     </div>
