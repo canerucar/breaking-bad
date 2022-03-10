@@ -1,5 +1,6 @@
 import React from 'react';
 import { useParams, Navigate } from 'react-router-dom';
+import './index.scss';
 
 import { useSelector } from 'react-redux';
 
@@ -13,10 +14,10 @@ function QuoteDetail() {
     return <Navigate to="/quotes" />;
   }
   
-  console.log(quote_id);
-  return <div>
-    <h1>Quote detail</h1>
-    <pre>{ JSON.stringify(quote, null, 2) }</pre>
+  return <div className='detail-wrapper'>
+    <h1>{quote.author}</h1>
+    <p>{quote.quote}</p>
+    {/* <pre>{ JSON.stringify(quote, null, 2) }</pre> */}
   </div>;
 }
 

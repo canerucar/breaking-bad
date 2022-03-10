@@ -1,0 +1,15 @@
+.char-detail {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    width: 35%;
+  }
+
+  h1 {
+    font-size: 30px;
+    margin-top: 20px;
+  }
+}

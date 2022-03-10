@@ -23,7 +23,6 @@ function Quotes() {
     return <Error message={error} />
   }
   return <div>
-    <h1>Quotes</h1>
     {status === 'loading' && <Loading />}
     {
       status === 'succeeded' && data.map((item) => 

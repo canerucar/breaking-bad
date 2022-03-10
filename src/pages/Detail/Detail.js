@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Loading from "../../components/Loading";
+import './index.scss';
 
 function Detail() {
   const [char, setChar] = useState(null);
@@ -20,9 +21,9 @@ function Detail() {
       loading && <Loading />
     }
     {
-      char && <div>
-        <div>{char.name}</div>
-        <img src={char.img} alt="details" style={{width: '50%'}} />
+      char && <div className="char-detail">
+        <img src={char.img} alt="details" />
+        <h1>{char.name}</h1>
       </div>
     }
     
