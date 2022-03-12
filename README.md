@@ -12,7 +12,7 @@
 - open in vscode
 - `npm run start && yarn start`
 
-#### Click to see the live version of the project : caner-breaking-bad.vercel.app/
+#### Click to see the live version of the project : https://caner-breaking-bad.vercel.app/
 
 #### Thank you for your time 🥳🥳🥳
 
